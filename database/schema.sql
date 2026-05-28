@@ -1,82 +1,83 @@
-
-## 1. Справочник ролей
-CREATE TABLE Roles (
-    role_id SERIAL PRIMARY KEY,
+CREATE TABLE roles (
+    role_id INT PRIMARY KEY,
     role_name VARCHAR(50) NOT NULL UNIQUE
 );
 
-## 2. Справочник статусов
-CREATE TABLE Statuses (
-    status_id SERIAL PRIMARY KEY,
-    status_name VARCHAR(50) NOT NULL UNIQUE
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100),
+    phone_number VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    role_id INT NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
 );
 
-## 3. Таблица фотографов
-CREATE TABLE Photographers (
+
+CREATE TABLE photographers (
     photographer_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     bio TEXT
 );
 
-## 4. Таблица категорий услуг
-CREATE TABLE Categories (
+
+CREATE TABLE categories (
     category_id SERIAL PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL,
     description TEXT,
     photographer_id INT,
-    FOREIGN KEY (photographer_id) REFERENCES Photographers(photographer_id)
+    FOREIGN KEY (photographer_id) REFERENCES photographers(photographer_id)
 );
 
-## 5. Таблица пользователей
-CREATE TABLE Users (
-    user_id SERIAL PRIMARY KEY,
-    username VARCHAR(100) NOT NULL UNIQUE, -- Логин или email
-    name VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
-## 6. Связующая таблица для реализации связи "многие-ко-многим" между Users и Roles
-CREATE TABLE User_Roles (
-    user_id INT NOT NULL,
-    role_id INT NOT NULL,
-    PRIMARY KEY (user_id, role_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (role_id) REFERENCES Roles(role_id) ON DELETE CASCADE
-);
-
-## 7. Таблица услуг
-CREATE TABLE Services (
+CREATE TABLE services (
     service_id SERIAL PRIMARY KEY,
     category_id INT NOT NULL,
     service_name VARCHAR(150) NOT NULL,
     description TEXT,
-    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
+    price DECIMAL(10, 2) CHECK (price >= 0),
     is_active BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
-## 8. Таблица записей / бронирований
-CREATE TABLE Bookings (
+
+CREATE TABLE statuses (
+    status_id INT PRIMARY KEY,
+    status_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE bookings (
     booking_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     service_id INT NOT NULL,
-    status_id INT DEFAULT 1, -- По умолчанию статус "Новая"
     booking_date DATE NOT NULL,
     booking_time TIME NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (service_id) REFERENCES Services(service_id),
-    FOREIGN KEY (status_id) REFERENCES Statuses(status_id)
+    status_id INT NOT NULL DEFAULT 1, -- По умолчанию "Новая"
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (service_id) REFERENCES services(service_id),
+    FOREIGN KEY (status_id) REFERENCES statuses(status_id)
 );
 
-## 9. Таблица избранного пользователя
-CREATE TABLE Favorites (
+
+CREATE TABLE favorites (
     favorite_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     service_id INT NOT NULL,
-    UNIQUE (user_id, service_id), -- Запрет на дублирование избранного
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (service_id) REFERENCES Services(service_id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (service_id) REFERENCES services(service_id),
+    UNIQUE (user_id, service_id) -- Запрет дублирования избранных услуг
+);
+
+
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    status_id INT NOT NULL,
+    service_id INT NOT NULL,
+    status_name VARCHAR(50), -- Денормализованное поле для быстрого отображения статуса
+    FOREIGN KEY (status_id) REFERENCES statuses(status_id),
+    FOREIGN KEY (service_id) REFERENCES services(service_id)
 );
