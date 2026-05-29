@@ -1,6 +1,5 @@
 USE photo_studio_db;
 
--- Таблица ролей
 CREATE TABLE Roles (
     role_id INT AUTO_INCREMENT PRIMARY KEY,
     role_name VARCHAR(50) NOT NULL UNIQUE
@@ -18,10 +17,12 @@ CREATE TABLE Users (
     username VARCHAR(100) NOT NULL UNIQUE,
     name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(20),
+	email VARCHAR(50),
+	password VARCHAR(15),
+	created_at DATE,
     role_id INT NOT NULL,
 	FOREIGN KEY (role_id) REFERENCES Roles(role_id)
 );
-
 
 
 CREATE TABLE Categories (
@@ -31,7 +32,6 @@ CREATE TABLE Categories (
 );
 
 
--- Таблица услуг
 CREATE TABLE Services (
     service_id INT AUTO_INCREMENT PRIMARY KEY,
     category_id INT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE Services (
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
 
--- Таблица статусов
+
 CREATE TABLE Statuses (
     status_id INT AUTO_INCREMENT PRIMARY KEY,
     status_name VARCHAR(50) NOT NULL UNIQUE
@@ -53,16 +53,15 @@ CREATE TABLE Orders (
     status_id INT NOT NULL,
     service_id INT NOT NULL,
     status_name VARCHAR(50) NOT NULL,
+	user_id INT NOT NULL,
     FOREIGN KEY (status_id) REFERENCES Statuses(status_id),
-    FOREIGN KEY (service_id) REFERENCES Services(service_id)
+    FOREIGN KEY (service_id) REFERENCES Services(service_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
-
 
 
 CREATE TABLE Favorites (
     favorite_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    service_id INT NOT NULL,
-    FOREIGN KEY (service_id) REFERENCES Services(service_id),
-    UNIQUE(user_id, service_id)
+    service_id INT NOT NULL
 );
