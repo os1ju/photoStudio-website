@@ -1,0 +1,150 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+    display: flex;
+    background-color: black;
+    border-bottom: 2px solid white;
+    color:aliceblue;
+    padding: 32px;
+    font-size: 64px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    gap: 15px;
+}
+
+
+.logo{
+    padding-top: 2px;
+    width: 90px;
+    height: 70px;
+
+}
+
+.links{ 
+
+    font-size: 34px;
+    color: white;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+}
+
+.body{
+    background-color: black;
+    color: white;
+}
+
+.card{
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top:100px ;
+    margin-left: 10px;
+    width: mid-content;
+    height: min-content;
+    background-color: rgb(255, 255, 255);
+    color: black;
+
+}
+
+.card_t{
+    margin-left: 30px;
+    margin-top: 10px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.card_cost{
+    padding-left: 20px;
+    color: #960303;
+    font-size: 25px;
+}
+
+.card_t2{
+    margin-left: 30px;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.banner{
+    margin-top: 100px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+.card_img{
+    width: 100%;
+    height: 166px;
+    object-fit: cover;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+.cards{
+    margin-top: 50px;
+    margin-left: 45px;
+    margin-right: 45px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    gap:30px
+}
+
+.btn {
+    background-color: #960303;
+    width: 175px;
+    height: 53px;
+    border:none;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+
+}
+
+.btn:hover {
+  background-color: #731D1D;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+   font-size: 64px;
+   color: white;
+   font-weight: bolder;
+
+}
+
+.footer {
+    border-top: 2px solid white;
+    background-color: #000000; /* Светлый фон */
+    width: 100%;
+    margin-top: 100px;
+    padding-top: auto;
+    font-size: 14px; /* Размер шрифта */
+    color: #333; /* Тёмно-серый текст */
+}
+
+.footer_text1{
+    padding: 30px;
+    padding-bottom: 15px;
+    color: white;
+    font-size: 35px;
+    font-weight: bolder;
+}
+
+.footer_text2{
+    padding-left: 30px;
+    color: white;
+    font-size: 20px;
+    font-weight:lighter;
+    padding-bottom: 10px;
+}
