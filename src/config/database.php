@@ -3,7 +3,7 @@
 $host = 'localhost';
 $dbname = 'domfoto_db';
 $username = 'root';    
-$password = 'polyteh';           
+$password = '6769';           
 
 try {
     $pdo = new PDO(
@@ -16,8 +16,6 @@ try {
             PDO::ATTR_EMULATE_PREPARES => false
         ]
     );
-    // временное сообщение об успехе (после проверки удалить)
-    echo "Подключение к БД успешно установлено!<br>";
 } catch (PDOException $e) {
     die(" Ошибка подключения: " . $e->getMessage());
 }
