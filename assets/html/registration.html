@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | ДомФото</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body class="body">
+    <div class="box">
+        <img class="img" src="img/forms_photo.png" alt="фотка для формы">
+        <div class="reg">
+            <p class="title">Регистрация</p>
+            <div class="fields">
+                <input id="reg-name" class="input" type="text" placeholder="Ваше имя">
+                <input id="reg-email" class="input" type="email" placeholder="Почта">
+                <input id="reg-password" class="input" type="password" placeholder="Пароль">
+                <input id="reg-password2" class="input" type="password" placeholder="Повторите пароль">
+                <input id="reg-phone" class="input" type="tel" placeholder="Номер телефона">
+                <div class="gender">
+                    <p class="text">Пол</p>
+                    <label>
+                        <input type="radio" name="gender" value="male"> м
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="female"> ж
+                    </label>
+                </div>
+                <input id="reg-birthdate" class="input" type="date" placeholder="дата рождения">
+            </div>
+            <div id="error-messages" style="color: red; margin-top: 10px;"></div>
+            <a class="link" href="authorization.html">уже есть аккаунт?</a>
+            <button id="btn-register" class="btn">Зарегистрироваться</button>
+        </div>
+    </div>
+    <script src="photo.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+</body>
+</html>

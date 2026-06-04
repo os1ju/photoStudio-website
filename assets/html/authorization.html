@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | ДомФото</title>
+    <link rel="stylesheet" href="css/authorization.css">
+</head>
+<body class="body">
+    <div class="box">
+        <img class="img" src="img/forms_photo.png" alt="фотка для формы">
+        <div class="reg">
+            <p class="title">Вход</p>
+            <div class="fields">
+                <input id="login-email" class="input" type="text" placeholder="Email или имя пользователя">
+                <input id="login-password" class="input" type="password" placeholder="Пароль">
+            </div>
+            <div id="error-messages" style="color: red; margin-top: 10px;"></div>
+            <a class="link" href="registration.html">ещё нет аккаунта?</a>
+            <button id="btn-login" class="btn">Войти</button>
+        </div>
+    </div>
+    <script src="photo.js"></script>
+    <?php if ($session->hasRole('admin')): ?>
+    <div class="admin-panel">
+        <a href="admin.php">Админ-панель</a>
+    </div>
+<?php endif; ?>
+</body>
+</html>

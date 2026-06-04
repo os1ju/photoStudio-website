@@ -1,34 +1,66 @@
+
+
 *{
     margin: 0px;
     padding: 0px;
 }
 
-.header{
-    display: flex;
-    background-color: black;
-    border-bottom: 2px solid white;
-    color:aliceblue;
-    padding: 32px;
-    font-size: 64px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    gap: 15px;
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 50px;
+    border-bottom:1px solid #777;
 }
 
+.favorite-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 30px;
+    transition: 0.2s;
+        }
+.favorite-btn:hover {
+    transform: scale(1.1);
+}
+.favorite-active {
+    color: #960303;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;}
 
 .logo{
-    padding-top: 2px;
-    width: 90px;
-    height: 70px;
-
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.links{ 
+.logo img{
+    width:60px;
+}
 
-    font-size: 34px;
-    color: white;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+.logo span{
+    font-size:48px;
+    font-weight:800;
+}
 
+nav{
+    display:flex;
+    gap:40px;
+}
+
+nav a{
+    color:#ffffff;
+    text-decoration:none;
+    font-size:18px;
+    border-bottom:1px solid #666;
+}
+
+nav a:hover{
+    color:rgb(88, 21, 21);
 }
 
 .body{
@@ -47,6 +79,7 @@
     height: min-content;
     background-color: rgb(255, 255, 255);
     color: black;
+    transition: 0.2s ease-in-out;
 
 }
 
@@ -61,6 +94,11 @@
     padding-left: 20px;
     color: #960303;
     font-size: 25px;
+}
+
+.card:hover{
+    box-shadow: 0 0 30px 10px #960303;
+	border: 2px solid #960303;
 }
 
 .card_t2{
@@ -123,28 +161,30 @@
 
 }
 
-.footer {
-    border-top: 2px solid white;
-    background-color: #000000; /* Светлый фон */
-    width: 100%;
-    margin-top: 100px;
-    padding-top: auto;
-    font-size: 14px; /* Размер шрифта */
-    color: #333; /* Тёмно-серый текст */
+footer{
+    border-top:1px solid #555;
+    margin-top:60px;
+    padding:40px 50px;
+    display:flex;
+    justify-content:space-between;
 }
 
-.footer_text1{
-    padding: 30px;
-    padding-bottom: 15px;
-    color: white;
-    font-size: 35px;
-    font-weight: bolder;
+footer h2{
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:20px;
 }
 
-.footer_text2{
-    padding-left: 30px;
-    color: white;
-    font-size: 20px;
-    font-weight:lighter;
-    padding-bottom: 10px;
+footer p{
+    color:#888;
+    font: size 24px;
+    margin-bottom:10px;
 }
+
+.vk{
+    text-align:center;
+}
+
+.vk img{
+    width:130px;
+  }
